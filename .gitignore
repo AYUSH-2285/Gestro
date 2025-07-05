@@ -1,0 +1,24 @@
+# 🐍 Python cache & compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# 🔄 Virtual environment folders
+venv/
+.venv/
+
+# 🧠 IDE / Editor folders
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 🖼️ System files (Windows/Mac)
+.DS_Store
+Thumbs.db
+
+# 🧪 Test or log files
+*.log
+*.tmp
