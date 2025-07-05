@@ -62,6 +62,9 @@ python main.py
 
 This project helps users control their system touch-free — useful for:
 Accessibility (hands-free control)
+
 Artists (gesture-based control)
+
 Clean rooms / labs
+
 Futuristic UI experiments
