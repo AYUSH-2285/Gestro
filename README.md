@@ -49,7 +49,8 @@ pip install -r requirements.txt
 python main.py
 ```
 
-🖥️ Controls
+
+##🖥️ Controls
 
 | Action           | How                               |
 | ---------------- | --------------------------------- |
@@ -58,7 +59,9 @@ python main.py
 | 🔁 Toggle ON/OFF | Press `T` key                     |
 | ❌ Quit           | Press `Q` or close preview window |
 
-🧠 Real-World Use Case
+
+
+##🧠 Real-World Use Case
 
 This project helps users control their system touch-free — useful for:
 Accessibility (hands-free control)
