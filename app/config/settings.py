@@ -14,9 +14,12 @@ SCROLL_SENSITIVITY = 3           # Higher is slower; lower is more sensitive
 THREE_FINGER_IDS = [8, 12, 16]  # Index, Middle, Ring finger tips
 
 
-# Three-finger gesture thresholds (if used later)
+# Three-finger gesture thresholds
+THREE_FINGER_IDS = [8, 12, 16]  # Index, Middle, Ring finger tips
 THREE_FINGER_MIN_DISTANCE = 30
 THREE_FINGER_MAX_DISTANCE = 80
+THREE_FINGER_THRESHOLD = 0.05  # Minimum normalized Y-movement to trigger gesture
+
 
 # Frame processing
 MAX_NUM_HANDS = 1                # Only track one hand for control

@@ -4,7 +4,7 @@ import cv2
 from app.gestures.hand_detector import HandDetector
 from app.gestures.full_hand_gesture import FullHandGesture
 from app.gestures.two_finger_scroll import TwoFingerScroll
-from app.gestures.three_finger_gesture import ThreeFingerControl
+from app.controllers.three_finger_actions import ThreeFingerActions  # ✅ NEW
 from app.controllers.window_switcher import WindowSwitcher
 
 # Create one instance of the controller
@@ -12,21 +12,19 @@ window_switcher = WindowSwitcher()
 
 def switch_callback(direction: str) -> None:
     if direction == "left":
-        window_switcher.switch_left()   # ⬅️ Move hand left → switch window left
+        window_switcher.switch_left()
     elif direction == "right":
-        window_switcher.switch_right()  # ➡️ Move hand right → switch window right
-
+        window_switcher.switch_right()
 
 def scroll_callback(direction: str) -> None:
-    """Callback to scroll windows based on two- or three-finger gesture direction."""
+    """Callback to scroll windows based on gesture direction."""
     window_switcher.scroll_window(direction)
 
 def initialize_gesture_handlers() -> tuple:
     """Initialize and return gesture handler instances."""
     full_hand = FullHandGesture(switch_callback=switch_callback)
     two_finger = TwoFingerScroll(scroll_callback=scroll_callback)
-    three_finger = ThreeFingerControl(minimize_callback=window_switcher.minimize_all_windows)
-
+    three_finger = ThreeFingerActions()  # ✅ Use motion-based class
     return full_hand, two_finger, three_finger
 
 def main():
@@ -58,10 +56,10 @@ def main():
                 elif two_finger.is_two_finger(hand_landmarks):
                     two_finger.detect(hand_landmarks)
 
-                elif three_finger.is_three_finger(hand_landmarks):
-                    three_finger.detect(hand_landmarks)
+                else:
+                    three_finger.detect_and_act(hand_landmarks)  # ✅ Detect scroll only on vertical movement
 
-            # Draw on-screen status text
+            # Draw status message
             cv2.putText(
                 frame,
                 "Gestro running... Press 'q' or ESC to quit.",

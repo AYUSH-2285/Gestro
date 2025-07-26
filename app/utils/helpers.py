@@ -25,20 +25,22 @@ def fingers_up(hand_landmarks):
 def count_fingers_up(hand_landmarks):
     """
     Count how many fingers are up based on hand landmark positions.
-    Ignores the thumb and starts from index finger to pinky.
+    Ignores the thumb and counts from index to pinky.
     """
-    fingers = [0] * 5
-    tip_ids = [4, 8, 12, 16, 20]
-
     if not hand_landmarks or len(hand_landmarks.landmark) < 21:
         return 0
 
-    for i in range(1, 5):  # Index to Pinky (skip thumb)
+    tip_ids = [4, 8, 12, 16, 20]  # Thumb to Pinky
+    count = 0
+
+    for i in range(1, 5):  # Index to Pinky
         tip = hand_landmarks.landmark[tip_ids[i]]
         pip = hand_landmarks.landmark[tip_ids[i] - 2]
-        fingers[i] = 1 if tip.y < pip.y else 0  # y is inverted
 
-    return sum(fingers)
+        if tip.y < pip.y:
+            count += 1
+
+    return count
 
 def get_finger_positions(hand_landmarks, finger_ids):
     """
